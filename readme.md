@@ -95,7 +95,6 @@ namespace CBT_NUnit
         }
     }
 }
-
 ```
 
  Notice the use of the decorators used by NUnit, [SetUp] and [TearDown]. Setup is used before each test unit is performed, and in this case we are instantiating the WebDriver object based of a browser parameter. After it's pointed to our hub with our os/browser api names, you should see the changes reflected in the app. The TearDown decorator is code that is run after each test is performed. In this case, we're making the call to driver.Quit() which ends the test session in our app. Additionally, we are using the API here to set the score to pass if we made it through our tests successfully. This is great for quickly seeing the results of your tests from our app rather than just from VS.
@@ -146,7 +145,6 @@ namespace CBT_NUnit
         }
     }
 }
-
 ```
 
 Here, we're creating a test that clicks a few checkboxes, creates a new ToDo, and archives the ones we checked. Additionally, its asserting throughout the test to ensure that the changes we made worked correctly. Notice also that our test extends our CBTAPI class so that the driver instantiation and tear down is handled outside of our class. To run it, simply right click within the method and click "Run Test". Switch over to the app, and you can see it running. 
@@ -201,7 +199,6 @@ namespace CBT_NUnit
         }
     }
 }
-
 ```
 
-Running this should start a test to two different browsers at once. This halves the execution time. Increasing your level of parallelization similarly cuts time and makes your job easier :) If you have any trouble getting setup, don't hesitate to reach out to us. Happy Testing!
+Running this should start a test to two different browsers at once. This halves the execution time. Increasing your level of parallelization similarly cuts time and makes your job easier :) If you have any trouble getting setup, don't hesitate to [reach out to us](mailto: support@crossbrowsertesting.com). Happy Testing!
