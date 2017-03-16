@@ -4,7 +4,7 @@ Originally ported from Java's JUnit, [NUnit](https://www.nunit.org/) provides a 
 
 For this example, I'm using Visual Studio 2015. Let's get started by installing some necessary dependencies. From NuGet, we'll install [NUnit](https://www.nuget.org/packages/NUnit/) and [Selenium-WebDriver](https://www.nuget.org/packages/Selenium.WebDriver/). From there, we can start putting our tests together. There are a couple components we'll need. We'll separate starting/closing our WebDriver and running our tests. For starting up, we can use this code to generate our WebDriver:
 
-```
+```C#
 
 using System;
 using System.IO;
@@ -101,7 +101,7 @@ namespace CBT_NUnit
 
  At this point, we've only created the driver object. Now let's create the test to be performed:
 
-```
+```C#
 using System;
 using System.IO;
 using System.Net;
@@ -154,7 +154,7 @@ Here, we're creating a test that clicks a few checkboxes, creates a new ToDo, an
 
 Want to get the same job done in half of the time? That's where parallel testing comes into play, and we're all for parallel testing at CBT. NUnit makes it simple by providing a single additional decorator, [Parallelizable(ParallelScope.Fixtures)]. Additionally, we'll give our test a few more browser parameters. Check out the below code:
 
-```
+```C#
 using System;
 using System.IO;
 using System.Net;
