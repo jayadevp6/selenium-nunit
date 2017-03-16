@@ -1,8 +1,8 @@
-# Getting Started with Selenium and NUnit
+# Getting Started with NUnit and CrossBrowserTesting
 
-Originally ported from Java's JUnit, NUnit provides a powerful platform for performing unit tests. Combined with the capabilities of Selenium, you can quickly start testing your web application, and including our platform, you now have hundereds of browsers at your disposal. Here, we'll get you started with a single NUnit test to a simple Angular ToDo application. We'll then move up to the point of running 4 tests in parallel for faster execution. 
+Originally ported from Java's JUnit, [NUnit](https://www.nunit.org/) provides a powerful platform for performing unit tests. Combined with the capabilities of [Selenium](http://www.seleniumhq.org/), you can quickly start testing your web application. If you bring our platform into the mix, you now have hundereds of browsers at your disposal. Here, we'll get you started with a single NUnit test to a simple Angular ToDo application. We'll then move up to the point of running 2 tests in parallel for faster execution. 
 
-For this example, I'm using Visual Studio 2015. Let's get started by installing some necessary dependencies. From NuGet, we'll install NUnit and Selenium-WebDriver. From there, we can start putting our tests together. There are a couple components we'll need. We'll separate starting/closing our WebDriver and running our tests. For starting up, we can use this code to generate our WebDriver:
+For this example, I'm using Visual Studio 2015. Let's get started by installing some necessary dependencies. From NuGet, we'll install [NUnit](https://www.nuget.org/packages/NUnit/) and [Selenium-WebDriver](https://www.nuget.org/packages/Selenium.WebDriver/). From there, we can start putting our tests together. There are a couple components we'll need. We'll separate starting/closing our WebDriver and running our tests. For starting up, we can use this code to generate our WebDriver:
 
 ```
 
@@ -154,8 +154,9 @@ Here, we're creating a test that clicks a few checkboxes, creates a new ToDo, an
 
 ## Parallel Testing
 
-Want to get the same job done in a fourth of the time? That's where parallel testing comes into play, and we're all for parallel testing at CBT. NUnit makes it simple by providing a single additional decorator, [Parallelizable(ParallelScope.Fixtures)]. Additionally, we'll give our test a few more browser parameters. Check out the below code:
+Want to get the same job done in half of the time? That's where parallel testing comes into play, and we're all for parallel testing at CBT. NUnit makes it simple by providing a single additional decorator, [Parallelizable(ParallelScope.Fixtures)]. Additionally, we'll give our test a few more browser parameters. Check out the below code:
 
+```
 using System;
 using System.IO;
 using System.Net;
@@ -170,8 +171,6 @@ namespace CBT_NUnit
 {
     [TestFixture("chrome")]
     [TestFixture("firefox")]
-    [TestFixture("ie")]
-    [TestFixture("edge")]
     [Parallelizable(ParallelScope.Fixtures)]
     public class ParallelTest : CBTAPI
     {
@@ -202,3 +201,7 @@ namespace CBT_NUnit
         }
     }
 }
+
+```
+
+Running this should start a test to two different browsers at once. This halves the execution time. Increasing your level of parallelization similarly cuts time and makes your job easier :) If you have any trouble getting setup, don't hesitate to reach out to us. Happy Testing!
