@@ -201,4 +201,4 @@ namespace CBT_NUnit
 }
 ```
 
-Running this should start a test to two different browsers at once. This halves the execution time. Increasing your level of parallelization similarly cuts time and makes your job easier :) If you have any trouble getting setup, don't hesitate to [reach out to us](mailto: support@crossbrowsertesting.com). Happy Testing!
+Running this should start a test to two different browsers at once. This halves the execution time. Increasing your level of parallelization similarly cuts time and makes your job easier :) If you have any trouble getting setup, don't hesitate to [reach out to us](mailto:support@crossbrowsertesting.com). Happy Testing!
