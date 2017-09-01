@@ -45,17 +45,19 @@ namespace CBT_NUnit
 
             switch (browser)
             {
+                // These all pull the latest version by default
+                // To specify version add SetCapability("version", "desired version")
                 case "chrome": 
-                    capability.SetCapability("browser_api_name", "Chrome56x64");
+                    capability.SetCapability("browserName", "Chrome");
                     break;
                 case "ie":
-                    capability.SetCapability("browser_api_name", "FF46x64");
+                    capability.SetCapability("browserName", "Firefox");
                     break;
                 case "edge":
-                    capability.SetCapability("browser_api_name", "Edge20");
+                    capability.SetCapability("browserName", "MicrosoftEdge");
                     break;
                 default:
-                    capability.SetCapability("browser_api_name", "IE11");
+                    capability.SetCapability("browserName", "Internet Explorer");
                     break;
             }
 
