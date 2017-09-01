@@ -33,21 +33,23 @@ namespace CBT_NUnit
             capability.SetCapability("name", "NUnit-CBT");
             capability.SetCapability("record_video", "true");
             capability.SetCapability("build", "1.0");
-            capability.SetCapability("os_api_name", "Win10");
+            capability.SetCapability("platform", "Windows 10");
 
             switch (browser)
             {
+                    // These all pull the latest version by default
+                    // To specify version add SetCapability("version", "desired version")
                 case "chrome": 
-                    capability.SetCapability("browser_api_name", "Chrome56x64");
+                    capability.SetCapability("browserName", "Chrome");
                     break;
                 case "ie":
-                    capability.SetCapability("browser_api_name", "FF46x64");
+                    capability.SetCapability("browserName", "Firefox");
                     break;
                 case "edge":
-                    capability.SetCapability("browser_api_name", "Edge20");
+                    capability.SetCapability("browserName", "MicrosoftEdge");
                     break;
                 default:
-                    capability.SetCapability("browser_api_name", "IE11");
+                    capability.SetCapability("browserName", "Internet Explorer");
                     break;
             }
 
