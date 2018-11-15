@@ -94,6 +94,7 @@ namespace CBT_NUnit
             newStream.Write(putdata, 0, putdata.Length);
             WebResponse response = request.GetResponse();
             newStream.Close();
+            response.Close();
         }
     }
 }
