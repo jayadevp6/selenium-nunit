@@ -19,7 +19,7 @@ namespace CBT_NUnit
         public string BaseURL = "https://crossbrowsertesting.com/api/v3/selenium";
         public string username = "chase@crossbrowsertesting.com";
         public string authkey = "12345";
-        
+
         public CBTAPI(string browser)
         {
             this.browser = browser;
@@ -32,6 +32,7 @@ namespace CBT_NUnit
 
             capability.SetCapability("name", "NUnit-CBT");
             capability.SetCapability("record_video", "true");
+            capability.SetCapability("record_network", "false");
             capability.SetCapability("build", "1.0");
             capability.SetCapability("platform", "Windows 10");
 
@@ -39,7 +40,7 @@ namespace CBT_NUnit
             {
                     // These all pull the latest version by default
                     // To specify version add SetCapability("version", "desired version")
-                case "chrome": 
+                case "chrome":
                     capability.SetCapability("browserName", "Chrome");
                     break;
                 case "ie":
