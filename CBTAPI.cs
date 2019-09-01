@@ -7,60 +7,66 @@ using OpenQA.Selenium.Remote;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using OpenQA.Selenium;
 
 namespace CBT_NUnit
+
 {
-    [TestFixture]
+    [SetUpFixture]
     public class CBTAPI
     {
         protected RemoteWebDriver driver;
         protected string browser;
         protected string session_id;
         public string BaseURL = "https://crossbrowsertesting.com/api/v3/selenium";
-        public string username = "chase@crossbrowsertesting.com";
-        public string authkey = "12345";
+        public string username = "YOUR_USERNAME";
+        public string authkey = "YOUR_AUTHKEY";
 
+        public CBTAPI()
+        {
+        
+        }
         public CBTAPI(string browser)
         {
             this.browser = browser;
         }
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
-            DesiredCapabilities capability = new DesiredCapabilities();
+            var caps = new RemoteSessionSettings();
 
-            capability.SetCapability("name", "NUnit-CBT");
-            capability.SetCapability("record_video", "true");
-            capability.SetCapability("record_network", "false");
-            capability.SetCapability("build", "1.0");
-            capability.SetCapability("platform", "Windows 10");
+            caps.AddMetadataSetting("name", "NUnit Test");
+            caps.AddMetadataSetting("username", username);
+            caps.AddMetadataSetting("password", authkey);
+            caps.AddMetadataSetting("platform", "Windows 10");
 
             switch (browser)
             {
-                    // These all pull the latest version by default
-                    // To specify version add SetCapability("version", "desired version")
+                // These all pull the latest version by default
+                // To specify version add SetCapability("version", "desired version")
                 case "chrome":
-                    capability.SetCapability("browserName", "Chrome");
+                    caps.AddMetadataSetting("browserName", "Chrome");
                     break;
                 case "ie":
-                    capability.SetCapability("browserName", "Firefox");
+                    caps.AddMetadataSetting("browserName", "Internet Explorer");
                     break;
                 case "edge":
-                    capability.SetCapability("browserName", "MicrosoftEdge");
+                    caps.AddMetadataSetting("browserName", "MicrosoftEdge");
+                    break;
+                case "firefox":
+                    caps.AddMetadataSetting("browserName", "Firefox");
                     break;
                 default:
-                    capability.SetCapability("browserName", "Internet Explorer");
+                    caps.AddMetadataSetting("browserName", "Chrome");
                     break;
             }
 
-            capability.SetCapability("username", username);
-            capability.SetCapability("password", authkey);
 
-            driver = new RemoteWebDriver(new Uri("http://hub.crossbrowsertesting.com:80/wd/hub/"), capability);
+            driver = new RemoteWebDriver(new Uri("http://hub.crossbrowsertesting.com:80/wd/hub/"), caps);
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void Cleanup()
         {
             var session_id = driver.SessionId.ToString();
@@ -87,7 +93,7 @@ namespace CBT_NUnit
             newStream.Write(putdata, 0, putdata.Length);
             WebResponse response = request.GetResponse();
             newStream.Close();
-            request.Close();
+          
         }
     }
 }
