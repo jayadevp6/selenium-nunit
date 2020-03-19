@@ -12,7 +12,7 @@ using OpenQA.Selenium;
 namespace CBT_NUnit
 
 {
-    [SetUpFixture]
+    [TestFixture]
     public class CBTAPI
     {
         protected RemoteWebDriver driver;
@@ -31,7 +31,7 @@ namespace CBT_NUnit
             this.browser = browser;
         }
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Initialize()
         {
             var caps = new RemoteSessionSettings();
@@ -66,7 +66,7 @@ namespace CBT_NUnit
             driver = new RemoteWebDriver(new Uri("http://hub.crossbrowsertesting.com:80/wd/hub/"), caps);
         }
 
-        [OneTimeTearDown]
+        [TearDown]
         public void Cleanup()
         {
             var session_id = driver.SessionId.ToString();
